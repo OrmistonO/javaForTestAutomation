@@ -13,7 +13,7 @@ jobs:
       - checkout
       - run:
           name: "Save hello"
-          command: echo "Hello" > output.txt
+          command: echo "Hello" > ~/output.txt
       - persist_to_workspace:
           root: ~/
           paths:
