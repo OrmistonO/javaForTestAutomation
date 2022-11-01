@@ -50,6 +50,16 @@ jobs:
           at: ~/
       - run: cat ~/output.txt
 
+  my_job:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - run: exit 1
+      - run:
+          name: on error
+          command: echo "Hello Error!"
+          when: on_fail
+
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
@@ -62,6 +72,7 @@ workflows:
             - save_hello_world_output
       - print_workspace_txt:
           requires:
-            - save_hello_world_output       
+            - save_hello_world_output  
+      - my_job     
 
       
